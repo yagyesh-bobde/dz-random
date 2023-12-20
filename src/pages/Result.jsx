@@ -32,7 +32,7 @@ const Result = () => {
             {
                 location.state?.teams?.map((team, index) => {
                     return (
-                        <div key={index} className="card flex flex-col justify-center px-3 py-5 w-full my-5">
+                        <div key={index} className="card flex flex-col  px-3 py-5 w-full my-5 min-w-[300px] max-w-[300px]">
                             <p className="text-2xl text-white italic">
                                 Team {index + 1}
                             </p>

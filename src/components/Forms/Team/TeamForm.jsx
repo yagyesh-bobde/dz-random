@@ -6,6 +6,7 @@ import TeamNameModal from '../../Modal/TeamName'
 import Empty from '../../../assets/sad-face.svg'
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import Counter from "../Inputs/Counter";
 
 const TeamForm = () => {
     const [names, setNames] = useState([])
@@ -85,6 +86,16 @@ const TeamForm = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }} 
         className="w-full h-full md:w-1/2  m-auto grid place-content-center">
+            <div className=" mb-10 flex items-center italic font-semibold">
+                <div className="card w-1/2 mx-2 flex flex-col justify-center items-center p-2 min-w-[100px]">
+                    <h4>Min</h4>
+                    <Counter num={min} setNum={setmin} />
+                </div>
+                <div className="card w-1/2 mx-2 flex flex-col justify-center items-center p-2 min-w-[100px]">
+                    <h4>Max</h4>
+                    <Counter num={max} setNum={setmax} />
+                </div>
+            </div>
             <div className="bg-primary flex flex-col min-h-[250px] w-[350px] md:min-w-[400px] relative rounded-xl">
                 <h1 className="italic p-5 py-3 text-2xl font-semibold border-b-[1px]">Add Name</h1>
                 <div className={`flex flex-col items-center ${names.length == 0 && "justify-center"} h-full pb-5`}>
