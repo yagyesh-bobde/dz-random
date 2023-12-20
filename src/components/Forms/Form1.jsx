@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { FaArrowRightLong } from "react-icons/fa6"
 import { Link } from "react-router-dom"
 
