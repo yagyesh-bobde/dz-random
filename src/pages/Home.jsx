@@ -13,7 +13,7 @@ const Home = () => {
         scale: [0, 0.5, 1]}}
       duration={3}
       className='bg-black w-screen h-screen overflow-hidden grid place-content-center text-white'>
-        <div className='flex flex-col w-[450px] gap-5'>
+        <div className='flex flex-col w-[350px] md:w-[450px] gap-5'>
           <h1 className='font-bold text-3xl'>
             Welcome To DZRandomizer
           </h1>
