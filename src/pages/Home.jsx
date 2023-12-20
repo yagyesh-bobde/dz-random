@@ -1,5 +1,6 @@
 
 import { FaArrowRightLong } from 'react-icons/fa6'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     return (
@@ -12,10 +13,12 @@ const Home = () => {
             This is the based random generator for your use. Generate random numbers, split teams, pick topics and more!
           </p>
           <div className="flex">
-          <button className='flex gap-2 items-center text-sm font-semibold bg-blue-500 py-3 px-5 rounded-full hover:scale-110 duration-300'>
-            Get Bamboozled 
-            <FaArrowRightLong />
-          </button>
+          <Link to={'/form'}>
+            <button className='flex gap-2 items-center text-sm font-semibold bg-blue-500 py-3 px-5 rounded-full hover:scale-110 duration-300'>
+                Get Bamboozled 
+                <FaArrowRightLong />
+            </button>
+          </Link>
           </div>
         </div>
       </div>
