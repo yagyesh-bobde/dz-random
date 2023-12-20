@@ -25,60 +25,26 @@ const TeamForm = () => {
         setNames(newNames)
     }
 
-
-    const divideNamesIntoTeamsWithSize = (names, minSize, maxSize) => {
-        // Check if the size constraints are valid
-        if (minSize <= 0 || maxSize <= 0 || minSize > maxSize) {
-          console.error("Invalid size constraints");
-          return [];
+    const increaseMin = () => {
+        if (min < max) {
+            setmin(min + 1)
         }
-      
-        // Shuffle the names array randomly
-        const shuffledNames = names.slice().sort(() => Math.random() - 0.5);
-      
-        // Calculate the number of teams
-        const numberOfTeams = Math.ceil(shuffledNames.length / maxSize);
-      
-        // Initialize teams with an empty array
-        const teams = Array.from({ length: numberOfTeams }, () => []);
-      
-        // Distribute names to teams with size constraints
-        shuffledNames.forEach((name, index) => {
-          const teamIndex = index % numberOfTeams;
-          const currentTeamSize = teams[teamIndex].length;
-      
-          // Check if the current team has reached the maximum size
-          if (currentTeamSize < maxSize) {
-            teams[teamIndex].push(name);
-          } else {
-            // If the current team has reached the maximum size,
-            // find the next team with space and add the name
-            for (let i = 0; i < numberOfTeams; i++) {
-              const nextTeamIndex = (teamIndex + i) % numberOfTeams;
-              if (teams[nextTeamIndex].length < maxSize) {
-                teams[nextTeamIndex].push(name);
-                break;
-              }
-            }
-          }
-        });
-      
-        // Check and adjust team sizes to meet the minimum size requirement
-        teams.forEach((team, index) => {
-          while (team.length < minSize) {
-            // Find a team with excess members and move one to the current team
-            for (let i = 0; i < numberOfTeams; i++) {
-              const otherTeamIndex = (index + i) % numberOfTeams;
-              const otherTeam = teams[otherTeamIndex];
-              if (otherTeam.length > minSize) {
-                team.push(otherTeam.pop());
-                break;
-              }
-            }
-          }
-        });
-      
-        return teams;
+    }
+    
+    const decreaseMin = () => {
+        if (min > 1) {
+            setmin(min - 1)
+        }
+    }
+
+    const increaseMax = () => {
+        setmax(max + 1)
+    }
+
+    const decreaseMax = () => {
+        if (max > min) {
+            setmax(max - 1)
+        }
     }
 
     return (
@@ -89,11 +55,11 @@ const TeamForm = () => {
             <div className=" mb-10 flex items-center italic font-semibold">
                 <div className="card w-1/2 mx-2 flex flex-col justify-center items-center p-2 min-w-[100px]">
                     <h4>Min</h4>
-                    <Counter num={min} setNum={setmin} />
+                    <Counter num={min} increase={increaseMin} decrease={decreaseMin}  />
                 </div>
                 <div className="card w-1/2 mx-2 flex flex-col justify-center items-center p-2 min-w-[100px]">
                     <h4>Max</h4>
-                    <Counter num={max} setNum={setmax} />
+                    <Counter num={max} increase={increaseMax} decrease={decreaseMax} />
                 </div>
             </div>
             <div className="bg-primary flex flex-col min-h-[250px] w-[350px] md:min-w-[400px] relative rounded-xl">
@@ -127,17 +93,14 @@ const TeamForm = () => {
                 }}
                 animate={{ opacity: 1 , y: 0 }}  
                 className="flex justify-center items-center">
-                    <Link to="/" state={{
-                        names: names,
-                        teams: divideNamesIntoTeamsWithSize(names, min, max)
-                    }} >
+                    <Link to="/" >
                         <button className="text-white font-semibold rounded-full my-10 border-2 p-2 px-5 hover:scale-110 duration-300">
                             Home
                         </button>
                     </Link>
                 </motion.div>
             {
-                names.length >= 2 && 
+                names.length >= min && 
                 
                 <motion.div
                 initial={{ opacity: 0 , y: 100 , paddingLeft : '1rem',      paddingRight : '1rem',
@@ -146,7 +109,8 @@ const TeamForm = () => {
                 className="flex justify-center items-center">
                     <Link to="/result" state={{
                         names: names,
-                        teams: divideNamesIntoTeamsWithSize(names, min, max)
+                        min: min,
+                        max: max
                     }} >
                         <button className="text-white font-semibold rounded-full my-10 bg-green-500 p-2 px-5 hover:scale-110 duration-300">
                             Generate Teams
