@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { FaArrowRightLong } from "react-icons/fa6"
 import { Link } from "react-router-dom"
-
+import { motion } from "framer-motion";
 
 const Form1 = () => {
 
@@ -65,7 +65,18 @@ const Form1 = () => {
                         </div>
                     ))
                 }
-                <div className="my-5">
+                <div className="my-5 flex items-center">
+                <motion.div
+                initial={{ opacity: 0 , y: 100 , paddingLeft : '1rem',      paddingRight : '1rem',
+                }}
+                animate={{ opacity: 1 , y: 0 }}  
+                className="flex justify-center items-center">
+                    <Link to="/" >
+                        <button className="text-white font-semibold rounded-full my-10 border-2 p-2 px-5 hover:scale-110 duration-300">
+                            Home
+                        </button>
+                    </Link>
+                </motion.div>
                     <Link to={`/form/enter/${options.find(option => option.isActive === true).value || "none"}`}>
                         <button className="flex gap-2 items-center text-sm font-semibold bg-green-500 hover:bg-transparent border-[1.5px] border-green-primary duration-300 py-2 px-5 rounded-full ">
                             Next

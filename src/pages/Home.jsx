@@ -1,10 +1,18 @@
 
 import { FaArrowRightLong } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
+import { motion } from "framer-motion";
 
 const Home = () => {
     return (
-        <div className='bg-black w-screen h-screen overflow-hidden grid place-content-center text-white'>
+      <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ 
+        opacity: 1,  
+        rotate: [0, 180, 360], 
+        scale: [0, 0.5, 1]}}
+      duration={3}
+      className='bg-black w-screen h-screen overflow-hidden grid place-content-center text-white'>
         <div className='flex flex-col w-[450px] gap-5'>
           <h1 className='font-bold text-3xl'>
             Welcome To DZRandomizer
@@ -21,7 +29,7 @@ const Home = () => {
           </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     )
 }
 
