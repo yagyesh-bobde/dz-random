@@ -1,34 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { FaArrowRightLong } from "react-icons/fa6";
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+    <div className='bg-black w-screen h-screen overflow-hidden grid place-content-center text-white'>
+      <div className='flex flex-col w-[450px] gap-5'>
+        <h1 className='font-bold text-3xl'>
+          Welcome To DZRandomizer
+        </h1>
+        <p className=''>
+          This is the based random generator for your use. Generate random numbers, split teams, pick topics and more!
         </p>
+        <div className="flex">
+        <button className='flex gap-2 items-center text-sm font-semibold bg-blue-500 py-3 px-5 rounded-full hover:scale-110 duration-300'>
+          Get Bamboozled 
+          <FaArrowRightLong />
+        </button>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
